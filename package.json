@@ -7,9 +7,9 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "start:server": "node-dev --respawn server",
-    "start:dev": "npm run build:watch & npm run start:server & npm run seed",
+    "start:dev": "npm run seed && npm run build:watch & nodemon server",
     "seed": "node ./bin/seed",
-    "start": "npm run build & node server & npm run seed"
+    "start": "npm run seed && npm run build & node server"
   },
   "repository": {
     "type": "git",

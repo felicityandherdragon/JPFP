@@ -32,17 +32,6 @@ const syncAndSeed = async () => {
 			description: faker.lorem.paragraph(),
 		});
 
-		const dataArray = new Array(5);
-		for (let i = 0; i < dataArray.length; i++) {
-			dataArray[i] = {
-				name: faker.company.companyName(),
-				address: faker.address.streetAddress(),
-				description: faker.lorem.paragraph(),
-			};
-		}
-
-		const createdCampus = await Campus.bulkCreate(dataArray);
-
 		//Student
 		const StudentOne = await Student.create({
 			firstName: faker.name.firstName(),
@@ -78,13 +67,16 @@ const syncAndSeed = async () => {
 				firstName: faker.name.firstName(),
 				lastName: faker.name.lastName(),
 				gpa: Math.floor(Math.random() * 5),
-				campusId: Math.floor(Math.random() * 5) + 1,
+				campusId: 1,
 			};
 		}
 
-		const createdStudents = await Student.bulkCreate(dataArrayStudent);
+		// const createdStudents = await Student.bulkCreate(dataArrayStudent);
+		await Promise.all(
+			dataArrayStudent.map((student) => Student.create(student))
+		);
 
-		// db.close()
+		await db.close();
 		console.log(`
       Seeding successful!
     `);
