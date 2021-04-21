@@ -32,7 +32,7 @@ const syncAndSeed = async () => {
 			description: faker.lorem.paragraph(),
 		});
 
-		const dataArray = new Array(100);
+		const dataArray = new Array(20);
 		for (let i = 0; i < dataArray.length; i++) {
 			dataArray[i] = {
 				name: faker.company.companyName(),
@@ -74,7 +74,7 @@ const syncAndSeed = async () => {
 			campusId: hufflepuff.id,
 		});
 
-		const dataArrayStudent = new Array(100);
+		const dataArrayStudent = new Array(20);
 		for (let i = 0; i < dataArrayStudent.length; i++) {
 			dataArrayStudent[i] = {
 				firstName: faker.name.firstName(),
