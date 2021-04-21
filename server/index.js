@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const { db } = require('./db')
+const { db } = require('./db');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -11,23 +11,22 @@ app.use(express.json());
 app.use(express.static(PUBLIC_PATH));
 app.use(express.static(DIST_PATH));
 
-app.use('/public',express.static(path.join(__dirname, '..', 'public')));
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+	res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-app.use('/api', require('./routes'))
+app.use('/api', require('./routes'));
 
-const init = async() => {
-  try {
-    await db.sync()
-    app.listen(PORT, () => {
-      console.log(`Server listening on PORT: ${PORT}`);
-    });
-  } catch(err) {
-    console.log(err)
-  }
-}
+const init = async () => {
+	try {
+		app.listen(PORT, () => {
+			console.log(`Server listening on PORT: ${PORT}`);
+		});
+	} catch (err) {
+		console.log(err);
+	}
+};
 
-init()
+init();

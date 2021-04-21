@@ -43,6 +43,8 @@ const syncAndSeed = async () => {
 
 		const createdCampus = await Campus.bulkCreate(dataArray);
 
+		const ids = createdCampus.map(({ id }) => id);
+
 		//Student
 		const StudentOne = await Student.create({
 			firstName: faker.name.firstName(),
@@ -78,7 +80,7 @@ const syncAndSeed = async () => {
 				firstName: faker.name.firstName(),
 				lastName: faker.name.lastName(),
 				gpa: Math.floor(Math.random() * 5),
-				campusId: Math.floor(Math.random() * 100) + 1,
+				campusId: ids[Math.floor(Math.random() * ids.length)],
 			};
 		}
 

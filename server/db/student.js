@@ -1,7 +1,12 @@
 const db = require('./db.js');
-const { STRING, FLOAT, VIRTUAL } = db.Sequelize;
+const { STRING, FLOAT, VIRTUAL, UUIDV4, UUID } = db.Sequelize;
 
 const Student = db.define('student', {
+	id: {
+		type: UUID,
+		primaryKey: true,
+		defaultValue: UUIDV4,
+	},
 	firstName: {
 		type: STRING,
 		allowNull: false,
