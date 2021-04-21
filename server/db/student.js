@@ -1,42 +1,43 @@
-const db = require('./db.js')
-const { STRING,FLOAT,VIRTUAL } = db.Sequelize
+const db = require('./db.js');
+const { STRING, FLOAT, VIRTUAL } = db.Sequelize;
 
 const Student = db.define('student', {
-  firstName: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  lastName: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  email: {
-    type: VIRTUAL,
-    get: function() {
-      return `${this.firstName}@hogwarts.com`
-    },
-    validate: {
-      notEmpty: true,
-      isEmail: true
-    }
-  },
-  imageUrl: {
-    type: STRING,
-    defaultValue: 'public/images/profile-placeholder.png'
-  },
-  gpa: {
-    type: FLOAT,
-    validate: {
-      max: 4.0,
-      min: 0.0
-    }
-  }
-})
+	firstName: {
+		type: STRING,
+		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
+	},
+	lastName: {
+		type: STRING,
+		allowNull: false,
+		validate: {
+			notEmpty: true,
+		},
+	},
+	email: {
+		type: VIRTUAL,
+		get: function () {
+			return `${this.firstName}@hogwarts.com`;
+		},
+		validate: {
+			notEmpty: true,
+			isEmail: true,
+		},
+	},
+	imageUrl: {
+		type: STRING,
+		defaultValue:
+			'https://180dc.org/wp-content/uploads/2017/11/profile-placeholder.png',
+	},
+	gpa: {
+		type: FLOAT,
+		validate: {
+			max: 4.0,
+			min: 0.0,
+		},
+	},
+});
 
-module.exports = Student
+module.exports = Student;
